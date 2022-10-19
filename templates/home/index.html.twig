@@ -15,27 +15,15 @@
                     <td>Action</td>
                 </thead>
                 <tbody>
+                    {% for user in listUser %}
                     <tr>
-                        <td>1</td>
-                        <td>Test</td>
-                        <td>Premier test</td>
-                        <td>0123456789</td>
+                        <td> {{user.id}}</td>
+                        <td>{{ user.name }}</td>
+                        <td> {{ user.lastname }}</td>
+                        <td> {{ user.phoneNumber }}</td>
                         <td><a href="#" type="button" class="btn btn-info">Afficher</a></td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Bientot</td>
-                        <td>la BDD</td>
-                        <td>0123456789</td>
-                        <td><a href="#" type="button" class="btn btn-info">Afficher</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Avec un</td>
-                        <td>foreach et une redirection</td>
-                        <td>0123456789</td>
-                        <td><a href="#" type="button" class="btn btn-info">Afficher</a></td>
-                    </tr>
+                    {% endfor %}
                 </tbody>
             </table>
         </div>
