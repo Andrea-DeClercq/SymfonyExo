@@ -22,4 +22,22 @@ class HomeController extends AbstractController
             'listUser' => $listUser,
         ]);
     }
+
+    /**
+     * Index User by ID
+     *
+     * @Route("/user/{id}", name="user_id") 
+     * @param integer $id
+     * @param EntityManagerInterface $em
+     * @return User
+     */
+    public function indexByUser(int $id, EntityManagerInterface $em){
+        $user = $em->getRepository(User::class)->find($id);
+        // dd($user);
+        return $this->render('home/user_detail.html.twig', [
+            'name' => $user->getName(),
+            'lastname' => $user->getLastName(),
+            'phoneNumber' => $user->getPhoneNumber(),
+        ]);
+    }
 }
