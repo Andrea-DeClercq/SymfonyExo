@@ -1,0 +1,7 @@
+routeHello:
+   path: /route/hello_world
+   controller: App\Controller\DefaultController::routeHello
+
+routeHelloName:
+   path: /route/hello_world/{slug}
+   controller: App\Controller\DefaultController::routeHelloName
