@@ -19,8 +19,17 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
+    #[ORM\Column(length: 10)]
+    private ?string $phoneNumber = null;
+
     #[ORM\Column(length: 255)]
-    private ?int $phoneNumber = null;
+    private ?string $adresse = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $ville = null;
+
+    #[ORM\Column]
+    private ?int $age = null;
 
     public function getId(): ?int
     {
@@ -59,6 +68,42 @@ class User
     public function setPhoneNumber(string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getAdresse(): ?string
+    {
+        return $this->adresse;
+    }
+
+    public function setAdresse(string $adresse): self
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
 
         return $this;
     }

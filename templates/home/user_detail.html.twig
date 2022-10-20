@@ -5,14 +5,16 @@
 {% block body %}
 <section>
     <div class="container">
-        <div class="sm-12-col">
-            Détails :
-            <ul>
-                <li>{{ name}}</li>
-                <li>{{ lastname}}</li>
-                <li>{{ phoneNumber}}</li>
-            </ul>
+        <div class="jumbotron">
+            <h1 class="display-4">{{name}}{{lastname}}</h1>
+            <p class="lead">Détails</p>
+            <hr class="my-4">
+                <ul>   
+                    <li>{{phoneNumber}}</li>
+                    <li>{{adress}},{{city}}</li>
+                    <li>{{age}} ans</li>
+                </ul>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
         </div>
-    </div>
 </section>
 {% endblock %}

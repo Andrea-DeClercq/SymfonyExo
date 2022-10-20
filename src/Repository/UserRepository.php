@@ -42,15 +42,15 @@ class UserRepository extends ServiceEntityRepository
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
-   public function findUserById($id): array
-   {
-       return $this->createQueryBuilder('u')
-           ->andWhere('u.id = :id')
-           ->setParameter('id', $id)
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+//    public function findUserById($id): array
+//    {
+//        return $this->createQueryBuilder('u')
+//            ->andWhere('u.id = :id')
+//            ->setParameter('id', $id)
+//            ->getQuery()
+//            ->getResult()
+//        ;
+//    }
 
 //    public function findOneBySomeField($value): ?User
 //    {

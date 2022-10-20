@@ -16,13 +16,19 @@
                 </thead>
                 <tbody>
                     {% for user in listUser %}
-                    <tr>
-                        <td> {{user.id}}</td>
-                        <td>{{ user.name }}</td>
-                        <td> {{ user.lastname }}</td>
-                        <td> {{ user.phoneNumber }}</td>
-                        <td><a href="{{path('user_id', {id: user.id}) }}" type="button" class="btn btn-info">Afficher</a></td>
-                    </tr>
+                        {% if user.age > 18  %}
+                            <tr>
+                                <td> {{user.id}}</td>
+                                <td>{{ user.name }}</td>
+                                <td> {{ user.lastname }}</td>
+                                <td> {{ user.phoneNumber }}</td>
+                                <td>
+                                    <a href="{{path('user_id', {id: user.id}) }}" type="button" class="btn btn-info">Afficher</a>
+                                    <a href="{{path('edit_user', {id: user.id}) }}" type="button" class="btn btn-warning">Modifier</a>
+                                    <a href="" type="button" class="btn btn-danger">Supprimer</a>
+                                </td>
+                            </tr>
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

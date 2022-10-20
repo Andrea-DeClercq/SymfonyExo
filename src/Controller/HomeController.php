@@ -16,7 +16,7 @@ class HomeController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $listUser = $em->getRepository(User::class)->findAll();
-        // dd($listUser);
+        // dd($tableau);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'listUser' => $listUser,
@@ -26,7 +26,7 @@ class HomeController extends AbstractController
     /**
      * Index User by ID
      *
-     * @Route("/user/{id}", name="user_id") 
+     * @Route("/contact/{id}", name="user_id") 
      * @param integer $id
      * @param EntityManagerInterface $em
      * @return User
@@ -38,6 +38,37 @@ class HomeController extends AbstractController
             'name' => $user->getName(),
             'lastname' => $user->getLastName(),
             'phoneNumber' => $user->getPhoneNumber(),
+            'adress' => $user->getAdresse(),
+            'city' => $user->getVille(),
+            'age' => $user->getAge()
         ]);
+    }
+
+    /**
+     * Edit user
+     * @Route("/edit/{id}", name="edit_user")
+     * @param integer $id
+     * @param EntityManagerInterface $em
+     * 
+     */
+    public function editUser(int $id, EntityManagerInterface $em){
+        $user = $em->getRepository(User::class)->find($id);
+        $user->setPhoneNumber("Modifier");
+        $em->persist($user);
+        $em->flush();
+        // dd($user);
+        return $this->redirectToRoute('app_home');
+    }
+
+    public function deleteUser(int $id, EntityManagerInterface $em){
+        $user = $em->getRepository(User::class)->find($id);
+
+        if(!$user)
+        {
+            throw $this->createNotFoundException('No User found');
+        }
+        $em->remove($user);
+        $em->flush();    
+        return $this->redirectToRoute('app_home');
     }
 }
