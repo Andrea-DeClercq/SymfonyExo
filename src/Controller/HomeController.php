@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Form\EditContactType;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
@@ -114,8 +113,7 @@ class HomeController extends AbstractController
     public function addContact(Request $request, EntityManagerInterface $em){
 
         $contact = new Contact();
-
-        
+               
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
