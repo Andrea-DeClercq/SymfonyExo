@@ -16,7 +16,6 @@
                 </thead>
                 <tbody>
                     {% for contact in listContact %}
-                        {% if contact.age > 18  %}
                             <tr>
                                 <td> {{contact.id}}</td>
                                 <td>{{ contact.name }}</td>
@@ -28,7 +27,6 @@
                                     <a href="" type="button" class="btn btn-danger">Supprimer</a>
                                 </td>
                             </tr>
-                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
