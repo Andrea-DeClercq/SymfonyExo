@@ -81,6 +81,10 @@ class HomeController extends AbstractController
             $data = $form->getData();
             $em->persist($data);
             $em->flush($data);
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
             // dd($data);
             return $this->redirectToRoute('app_home');
         }
