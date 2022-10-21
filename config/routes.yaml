@@ -5,3 +5,7 @@ routeHello:
 routeHelloName:
    path: /route/hello_world/{slug}
    controller: App\Controller\DefaultController::routeHelloName
+   
+app_logout:
+    path: /logout
+    methods: GET

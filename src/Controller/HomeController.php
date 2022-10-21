@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(EntityManagerInterface $em): Response
     {
-        $listContact = $em->getRepository(Contact::class)->findAll();
+        $listContact = $em->getRepository(Contact::class)->findByAgeSup18();
         // dd($tableau);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',

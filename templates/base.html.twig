@@ -37,12 +37,18 @@
                     <li class="nav-item">
                     <a class="nav-link active" href="{{path('add_contact')}}">Ajouter Contact</a>
                     </li>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item">
+                    <a class="nav-link active" href="{{path('app_logout')}}">Déconnexion</a>
+                    </li>
+                    {% elseif is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
                     <li class="nav-item">
                     <a class="nav-link active" href="{{path('app_register')}}">Inscription</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link active" href="{{path('app_login')}}">Connexion</a>
                     </li>
+                    {% endif %}
                 </ul>
                 </div>
             </div>

@@ -61,18 +61,27 @@ class ContactRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-     public function findAllContact()
+     public function findByAgeSup18()
      {
         $entityManager = $this->getEntityManager();
 
         $query = $entityManager->createQuery(
-            'SELECT p
-            FROM App\Entity\Product p
-            WHERE p.price > :price
-            ORDER BY p.price ASC'
+            'SELECT c
+            FROM App\Entity\contact c
+            WHERE c.age > 18
+            ORDER BY c.age ASC'
         );
 
         // returns an array of Product objects
         return $query->getResult();
     }
+    public function findByAge($age): ?array 
+   {
+       return $this->createQueryBuilder('u')
+           ->andWhere('u.age = :age')
+           ->setParameter('age', $age)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 }

@@ -8,6 +8,9 @@
 <section>
     <div class="container">
         <div class="sm-12-col">
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <p>Email: {{ app.user.email }}</p>
+            {% endif %}
             <table class="table table-striped">
                 <thead>
                     <td>ID</td>
@@ -18,7 +21,7 @@
                 </thead>
                 <tbody>
                     {% for contact in listContact %}
-                        {% if contact.age > 18  %}
+                        {# {% if contact.age > 18  %} #}
                             <tr>
                                 <td> {{contact.id}}</td>
                                 <td>{{ contact.name }}</td>
@@ -26,11 +29,13 @@
                                 <td> {{ contact.phoneNumber }}</td>
                                 <td>
                                     <a href="{{path('contact_id', {id: contact.id}) }}" type="button" class="btn btn-info">Afficher</a>
+                                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                                     <a href="{{path('edit_contact', {id: contact.id}) }}" type="button" class="btn btn-warning">Modifier</a>
                                     <a href="" type="button" class="btn btn-danger">Supprimer</a>
+                                    {% endif %}
                                 </td>
                             </tr>
-                        {% endif %}
+                        {# {% endif %} #}
                     {% endfor %}
                 </tbody>
             </table>
