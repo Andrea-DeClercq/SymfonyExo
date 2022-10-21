@@ -3,5 +3,34 @@
 {% block title %}Ajout contact!{% endblock %}
 
 {% block body %}
-    {{form(form)}}
+    <section>
+        <div class="container-fluid">
+            {{ form_start(form, {'attr' : {'novalidate': 'novalidate'}})}}
+            <div class="row">
+                <div class="col-sm-6">
+                    <h1 class="display-6">Informations</h1>
+                    <p class="lead">Name : {{form_widget(form.name)}}</p>
+                    {{ form_errors(form.name) }}
+                    <p class="lead">LastName : {{form_widget(form.lastname)}}</p>
+                    <p class="lead">Phone Number : {{form_widget(form.phoneNumber)}}</p>
+                    <p class="lead">Age : {{form_widget(form.age)}}</p>
+                    {# {{form(form)}}   #}
+                </div>
+                <div class="col-sm-6">
+                    <h1 class="display-6">Adresse</h1>
+                    <p class="lead">Adresse : {{form_widget(form.adresse)}}</p>
+                    <p class="lead">City : {{form_widget(form.ville)}}</p>
+                    {# {{form(form)}}   #}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8">
+                    <p class="lead">Category : {{form_widget(form.category)}}</p>
+                </div>
+                <div class="col-sm-2">{{form_widget(form.submit)}}</div>
+            </div>
+        </div>
+        {{ form_end(form)}}
+    </section>
 {% endblock %}
