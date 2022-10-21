@@ -17,6 +17,7 @@
                     <td>Nom</td>
                     <td>Prénom</td>
                     <td>Téléphone</td>
+                    <td>Catégorie</td>
                     <td>Action</td>
                 </thead>
                 <tbody>
@@ -27,6 +28,7 @@
                                 <td>{{ contact.name }}</td>
                                 <td> {{ contact.lastname }}</td>
                                 <td> {{ contact.phoneNumber }}</td>
+                                <td> {{ contact.category.titre }}</td>
                                 <td>
                                     <a href="{{path('contact_id', {id: contact.id}) }}" type="button" class="btn btn-info">Afficher</a>
                                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}

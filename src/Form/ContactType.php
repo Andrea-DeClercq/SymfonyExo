@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Contact;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -28,6 +30,7 @@ class ContactType extends AbstractType
                         'minMessage' => 'Nom Invalide !'
                     ])
                     ],
+                    'attr' => ['placeholder' => 'Vorname ']
             ])
             ->add('lastname', TextType::class, [
                 'constraints' => [
@@ -79,6 +82,10 @@ class ContactType extends AbstractType
                         'message' => 'Age inférieur ou égal a 120'
                     ]),
                     ],
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'titre'
             ])
             ->add('submit', SubmitType::class)
         ;

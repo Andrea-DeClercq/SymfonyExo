@@ -34,7 +34,7 @@ class HomeController extends AbstractController
     public function listeAllContact(EntityManagerInterface $em){
         {
             $listContact = $em->getRepository(Contact::class)->findAll();
-            // dd($tableau);
+            // dd($listContact[0]->getCategory()->getTitre());
             return $this->render('home/liste_contact.html.twig', [
                 'controller_name' => 'HomeController',
                 'listContact' => $listContact,
@@ -79,7 +79,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $em->persist($data);
-            $em->flush($data);
+            $em->flush();
             $this->addFlash(
                 'notice',
                 'Your changes were saved!'
@@ -121,7 +121,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $em->persist($data);
-            $em->flush($data);
+            $em->flush();
             // dd($data);
             return $this->redirectToRoute('app_home');
         }
