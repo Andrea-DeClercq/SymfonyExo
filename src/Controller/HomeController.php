@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
-use App\Form\EditContactType;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityManager;
@@ -18,7 +17,7 @@ class HomeController extends AbstractController
     #[Route('/home', name: 'app_home')]
     public function index(EntityManagerInterface $em): Response
     {
-        $listContact = $em->getRepository(Contact::class)->findAll();
+        $listContact = $em->getRepository(Contact::class)->findByAgeSup18();
         // dd($tableau);
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
@@ -35,7 +34,7 @@ class HomeController extends AbstractController
     public function listeAllContact(EntityManagerInterface $em){
         {
             $listContact = $em->getRepository(Contact::class)->findAll();
-            // dd($tableau);
+            // dd($listContact[0]->getCategory()->getTitre());
             return $this->render('home/liste_contact.html.twig', [
                 'controller_name' => 'HomeController',
                 'listContact' => $listContact,
@@ -80,7 +79,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $em->persist($data);
-            $em->flush($data);
+            $em->flush();
             $this->addFlash(
                 'notice',
                 'Your changes were saved!'
@@ -114,8 +113,7 @@ class HomeController extends AbstractController
     public function addContact(Request $request, EntityManagerInterface $em){
 
         $contact = new Contact();
-
-        
+               
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
@@ -123,7 +121,7 @@ class HomeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
             $em->persist($data);
-            $em->flush($data);
+            $em->flush();
             // dd($data);
             return $this->redirectToRoute('app_home');
         }

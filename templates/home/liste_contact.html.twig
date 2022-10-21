@@ -12,6 +12,7 @@
                     <td>Nom</td>
                     <td>Prénom</td>
                     <td>Téléphone</td>
+                    <td>Catégorie</td>
                     <td>Action</td>
                 </thead>
                 <tbody>
@@ -21,6 +22,7 @@
                                 <td>{{ contact.name }}</td>
                                 <td> {{ contact.lastname }}</td>
                                 <td> {{ contact.phoneNumber }}</td>
+                                <td> {{ contact.category.titre }}</td>
                                 <td>
                                     <a href="{{path('contact_id', {id: contact.id}) }}" type="button" class="btn btn-info">Afficher</a>
                                     <a href="{{path('edit_contact', {id: contact.id}) }}" type="button" class="btn btn-warning">Modifier</a>

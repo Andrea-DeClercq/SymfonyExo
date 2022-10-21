@@ -2,7 +2,9 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Contact;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -22,26 +24,32 @@ class ContactType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Veuillez remplir ce champ'
+                    ]),
                     new Length([
                         'min' => 2,
                         'minMessage' => 'Nom Invalide !'
                     ])
                     ],
+                'attr' => ['placeholder' => 'Name ']
             ])
             ->add('lastname', TextType::class, [
                 'constraints' => [
-                    new NotBlank(),
+                    new NotBlank([
+                        'message' => 'Veuillez remplir ce champ'
+                    ]),
                     new Length([
                         'min' => 2,
                         'minMessage' => 'Prénom Invalide !'
                     ])
                     ],
+                'attr' => ['placeholder' => 'Last Name'],
             ])
             ->add('phoneNumber', TelType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Remplir ce champ'
+                        'message' => 'Veuillez remplir ce champ'
                     ]),
                     new Length([
                         'min' => 10,
@@ -50,25 +58,28 @@ class ContactType extends AbstractType
                         'maxMessage' => 'Téléphone Invalide !'
                     ])
                 ],
+                'attr' => ['placeholder' => '0123456789']
             ])
             ->add('adresse', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Remplir ce champ'
+                        'message' => 'Veuillez remplir ce champ'
                     ]),
                     ],
+                'attr' => ['placeholder' => '784 Rue du Code'],
             ])
             ->add('ville', TextType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Remplir ce champ'
+                        'message' => 'Veuillez remplir ce champ'
                     ]),
                 ],
+                'attr' => ['placeholder' => 'SymfonyCity'],
             ])
             ->add('age', IntegerType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Remplir ce champ'
+                        'message' => 'Veuillez remplir ce champ'
                     ]),
                     new GreaterThanOrEqual([
                         'value' => 15,
@@ -79,8 +90,15 @@ class ContactType extends AbstractType
                         'message' => 'Age inférieur ou égal a 120'
                     ]),
                     ],
+                'attr' => ['placeholder' => '>= 15 | =< 120'],
             ])
-            ->add('submit', SubmitType::class)
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'titre'
+            ])
+            ->add('submit', SubmitType::class,[
+                'attr' => ['class' => 'btn btn-success ']
+            ])
         ;
     }
 
